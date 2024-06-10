@@ -8,6 +8,7 @@
 -   TypeScript
 -   NestJS
 -   MongoDB
+-   Docker
 
 <br>
 
@@ -16,25 +17,43 @@
 1. Install the Nest CLI
 
 ```
-$ npm install -g @nestjs/cli
+npm install -g @nestjs/cli
 ```
 
 2. build, (re)create, and start the containers in detached mode
 
 ```
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 3. Install the dependencies
 
 ```
-$ npm install
+npm install
 ```
 
 4. Run the application
 
 ```
-$ npm run start:dev
+npm run start:dev
 ```
 
-5. Open postman and do a request to `http://localhost:3000/api/v2/seed` to seed the database with the pokemons
+> Open postman and do a request to `http://localhost:3000/api/v2/seed` to seed the database with the pokemons
+
+## Production Build
+
+1. Create file `.env.prod`
+
+2. Create the docker image
+
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
+
+3. If the image is already created, just run
+
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d
+```
+
+> Open postman and do a request to `http://localhost:3000/api/v2/seed` to seed the database with the pokemons
